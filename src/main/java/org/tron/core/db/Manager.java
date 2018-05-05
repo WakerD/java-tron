@@ -5,7 +5,6 @@ import static org.tron.core.config.Parameter.ChainConstant.WITNESS_PAY_PER_BLOCK
 import static org.tron.protos.Protocol.Transaction.Contract.ContractType.TransferAssetContract;
 import static org.tron.protos.Protocol.Transaction.Contract.ContractType.TransferContract;
 
-import com.carrotsearch.sizeof.RamUsageEstimator;
 import com.google.common.collect.Lists;
 import com.google.protobuf.ByteString;
 import java.util.Arrays;
@@ -424,7 +423,7 @@ public class Manager {
       throw new ValidateSignatureException("trans sig validate failed");
     }
 
-    validateTapos(trx);
+    //validateTapos(trx);
 
     //validateFreq(trx);
 
@@ -433,7 +432,7 @@ public class Manager {
     }
 
     try (RevokingStore.Dialog tmpDialog = revokingStore.buildDialog()) {
-      consumeBandwidth(trx);
+      //consumeBandwidth(trx);
       processTransaction(trx);
       pendingTransactions.add(trx);
       tmpDialog.merge();
@@ -810,7 +809,7 @@ public class Manager {
     final List<Actuator> actuatorList = ActuatorFactory.createActuator(trxCap, this);
     TransactionResultCapsule ret = new TransactionResultCapsule();
 
-    consumeBandwidth(trxCap);
+    //consumeBandwidth(trxCap);
 
     for (Actuator act : actuatorList) {
       act.validate();
